@@ -1,17 +1,25 @@
 // import { api } from "~/utils/api";
 
-interface CardProps {
-  name: string;
-  tags: string[];
-  text: string;
-}
+import { useState } from "react";
+import CardPopuded from "./CardPopuped";
+import { ICardProps } from "~/utils/types";
 
-export default function Card({ name, tags, text }: CardProps) {
+
+export default function Card({ name, tags, text }: ICardProps) {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const [showAbsoluteComponent, setShowAbsoluteComponent] = useState<boolean>(false);
+
+  const handleCardClick = () => {
+    setShowAbsoluteComponent(true);
+  };
+
+  const handleClose = () => {
+    setShowAbsoluteComponent(false);
+  };
 
   return (
     <>
-      <div className="min-w-lg max-w-lg my-2 rounded-xl bg-slate-700 shadow-md">
+      <div onClick={handleCardClick}  className="min-w-lg my-2 max-w-lg rounded-xl bg-slate-700 shadow-md">
         <div className="space-x-4 p-6">
           {/* <div className="text-sm font-semibold uppercase tracking-wide text-indigo-500"> */}
           <span className="relative">
@@ -51,6 +59,7 @@ export default function Card({ name, tags, text }: CardProps) {
           </button>{" "}
         </div>
       </div>
+      {showAbsoluteComponent && <CardPopuded onClose={handleClose} />}
       {/* <p className="text-2xl text-white">
             {hello.data ? hello.data.greeting : "Loading tRPC query..."}
           </p> */}
