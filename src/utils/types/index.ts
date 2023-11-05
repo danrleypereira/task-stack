@@ -11,7 +11,7 @@ interface IUseLocalStorageProps {
 
 interface ITaskProps {
     task: ITask;
-    index: number;
+    path: number[];
     toggleTaskCompletion: (index: number) => void;
     handleTaskNameChange: (
         index: number,
@@ -26,6 +26,7 @@ interface ICardPopudedProps {
 interface ITask {
     text: string;
     completed: boolean;
+    subtasks?: ITask[];
 }
 
 export type { IUseLocalStorageProps, ITask, ITaskProps, ICardPopudedProps, ICardProps };
